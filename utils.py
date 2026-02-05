@@ -10,7 +10,7 @@ class Replay_Buffer(object):
         self.size = 0
     
     def load_dataset(self, data):
-        data
+        return data
 
     def sample(self):
-        return
+        return {}

@@ -1,8 +1,5 @@
 import numpy as np
 import torch
-import torch.nn as nn
-
-import d4rl
 
 from diffusion import Diffusion
 from utils import *
@@ -19,6 +16,8 @@ def main(argv):
     # 설정값 사용
     print(f"모델: {FLAGS.model}")
     print(f"학습률: {FLAGS.learning_rate}")
+    
+    reward_diffusion = Diffusion(state_dim, action_dim, hidden_dim, hidden_layers)
     
 
 
