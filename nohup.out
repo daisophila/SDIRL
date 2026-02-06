@@ -1,0 +1,40 @@
+Warning: Flow failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'flow'
+/home/jongchan/.local/lib/python3.9/site-packages/glfw/__init__.py:916: GLFWError: (65544) b'X11: The DISPLAY environment variable is missing'
+  warnings.warn(message, GLFWError)
+Warning: CARLA failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'carla'
+pybullet build time: Nov 28 2023 23:52:03
+/home/jongchan/.local/lib/python3.9/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+load datafile:   0%|          | 0/21 [00:00<?, ?it/s]load datafile:  14%|█▍        | 3/21 [00:00<00:01, 10.36it/s]load datafile:  24%|██▍       | 5/21 [00:00<00:01, 10.21it/s]load datafile:  81%|████████  | 17/21 [00:00<00:00, 28.26it/s]load datafile:  95%|█████████▌| 20/21 [00:00<00:00, 21.17it/s]load datafile: 100%|██████████| 21/21 [00:01<00:00, 20.97it/s]
+Warning: Flow failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'flow'
+/home/jongchan/.local/lib/python3.9/site-packages/glfw/__init__.py:916: GLFWError: (65544) b'X11: The DISPLAY environment variable is missing'
+  warnings.warn(message, GLFWError)
+Warning: CARLA failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'carla'
+pybullet build time: Nov 28 2023 23:52:03
+/home/jongchan/.local/lib/python3.9/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+load datafile:   0%|          | 0/21 [00:00<?, ?it/s]load datafile:  14%|█▍        | 3/21 [00:00<00:01, 10.18it/s]load datafile:  24%|██▍       | 5/21 [00:00<00:01, 10.03it/s]load datafile:  81%|████████  | 17/21 [00:00<00:00, 27.81it/s]load datafile:  95%|█████████▌| 20/21 [00:01<00:00, 20.87it/s]load datafile: 100%|██████████| 21/21 [00:01<00:00, 20.65it/s]
+Warning: Flow failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'flow'
+/home/jongchan/.local/lib/python3.9/site-packages/glfw/__init__.py:916: GLFWError: (65544) b'X11: The DISPLAY environment variable is missing'
+  warnings.warn(message, GLFWError)
+Warning: CARLA failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'carla'
+pybullet build time: Nov 28 2023 23:52:03
+/home/jongchan/.local/lib/python3.9/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+load datafile:   0%|          | 0/21 [00:00<?, ?it/s]load datafile:  14%|█▍        | 3/21 [00:00<00:01, 10.30it/s]load datafile:  24%|██▍       | 5/21 [00:00<00:01, 10.12it/s]load datafile:  81%|████████  | 17/21 [00:00<00:00, 28.06it/s]load datafile:  95%|█████████▌| 20/21 [00:01<00:00, 21.04it/s]load datafile: 100%|██████████| 21/21 [00:01<00:00, 20.83it/s]
+Warning: Flow failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'flow'
+/home/jongchan/.local/lib/python3.9/site-packages/glfw/__init__.py:916: GLFWError: (65544) b'X11: The DISPLAY environment variable is missing'
+  warnings.warn(message, GLFWError)
+Warning: CARLA failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'carla'
+pybullet build time: Nov 28 2023 23:52:03
+/home/jongchan/.local/lib/python3.9/site-packages/gym/spaces/box.py:84: UserWarning: [33mWARN: Box bound precision lowered by casting to float32[0m
+  logger.warn(f"Box bound precision lowered by casting to {self.dtype}")
+load datafile:   0%|          | 0/21 [00:00<?, ?it/s]load datafile:  14%|█▍        | 3/21 [00:00<00:01, 10.04it/s]load datafile:  24%|██▍       | 5/21 [00:00<00:01,  9.94it/s]load datafile:  81%|████████  | 17/21 [00:00<00:00, 27.55it/s]load datafile:  95%|█████████▌| 20/21 [00:01<00:00, 20.70it/s]load datafile: 100%|██████████| 21/21 [00:01<00:00, 20.47it/s]
