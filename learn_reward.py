@@ -22,7 +22,7 @@ FLAGS = flags.FLAGS
 flags.DEFINE_string('env', 'hopper-expert-v2', 'Environment and dataset for IRL')
 flags.DEFINE_integer('seed', 0, 'Random seed')
 
-flags.DEFINE_integer('top_n', 5, 'Select N trajectories of top Return')
+flags.DEFINE_integer('top_n', 3, 'Select N trajectories of top Return')
 
 flags.DEFINE_boolean('use_ema', True, 'Use Exponential moving average for model update')
 
@@ -32,9 +32,9 @@ flags.DEFINE_integer('num_hidden_layers', 4, 'Number of hidden layers')
 
 flags.DEFINE_integer('epochs', 1000000, 'Total number of epoch for laerning')
 flags.DEFINE_float('lr', 1e-4, 'Learning rate')
-flags.DEFINE_float('weight_decay', 1e-2, 'Learning rate')
+flags.DEFINE_float('weight_decay', 1e-5, 'Weight Decay')
 # flags.DEFINE_boolean('lr_sch', True, 'Use learning rate schedule')
-flags.DEFINE_integer('batch_size', 1024, 'Batch size')
+flags.DEFINE_integer('batch_size', 256, 'Batch size')
 
 flags.DEFINE_string('device', 'cuda', 'Hardware accelerator for learning')
 
@@ -43,7 +43,7 @@ flags.DEFINE_string('save_path', './results/', 'Model save folder')
 
 
 def main(argv):
-    exp_dir = FLAGS.save_path + f'{FLAGS.env}_{FLAGS.seed}_{time.time():.0f}'
+    exp_dir = FLAGS.save_path + f'{FLAGS.env}_{FLAGS.seed}_n{FLAGS.top_n}_{time.time():.0f}'
     os.makedirs(exp_dir)
 
     flags_dict = FLAGS.flag_values_dict()
