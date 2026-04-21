@@ -108,8 +108,9 @@ class Diffusion(object):
         # t = torch.rand((len(x_1), 1), requires_grad=False).to(self.device)
         t = torch.randn((len(x_1), 1), requires_grad=False).to(self.device)
         t = torch.sigmoid(t * 0.8 - 0.8)
-        v = (x_1 - eps)/(1-t)
+        
         x_t = t*x_1 + (1-t)*eps
+        v = (x_1 - x_t)/(1-t)
         v_pred = (self.model(x_t, t)-x_t)/(1-t)
         return torch.mean((v_pred-v)**2)
 
