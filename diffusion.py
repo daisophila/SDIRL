@@ -105,7 +105,9 @@ class Diffusion(object):
 
     def loss(self, x_1):
         eps = torch.randn_like(x_1, requires_grad=False).to(self.device)
-        t = torch.rand((len(x_1), 1), requires_grad=False).to(self.device)
+        # t = torch.rand((len(x_1), 1), requires_grad=False).to(self.device)
+        t = torch.randn((len(x_1), 1), requires_grad=False).to(self.device)
+        t = torch.sigmoid(t * 0.8 - 0.8)
         v = x_1 - eps
         x_t = t*x_1 + (1-t)*eps
         v_pred = (self.model(x_t, t)-x_t)/(1-t)
