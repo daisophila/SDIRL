@@ -159,7 +159,7 @@ if __name__ == "__main__":
 		next_state, real_reward, done, _ = env.step(action)
 		# reward = 5+diffusion.get_reward(torch.FloatTensor(state), t=0.8) # ddim?? score function?
 		# reward = 0.01*np.log(-diffusion.get_reward(torch.FloatTensor(state), t=0.8))
-		reward = 1*np.exp(diffusion.get_reward(torch.FloatTensor(state), t=0.9))
+		reward = 1*np.exp(diffusion.get_reward(torch.FloatTensor(state), t=0.9, use_v=False))
 		# reward = real_reward
 		done_bool = float(done) if episode_timesteps < env._max_episode_steps else 0
 
@@ -187,5 +187,5 @@ if __name__ == "__main__":
 		# Evaluate episode
 		if (t + 1) % args.eval_freq == 0:
 			evaluations.append(eval_policy(policy, args.env, args.seed))
-			np.save(f"./results/{file_name}_exp1_261_09", evaluations)
+			np.save(f"./results/{file_name}_exp1_261_09_x", evaluations)
 			if args.save_model: policy.save(f"./models/{file_name}")
