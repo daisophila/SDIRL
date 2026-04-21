@@ -77,9 +77,10 @@ class Diffusion(object):
 
         self.model = MLP(self.x_dim, self.hidden_dim, self.hidden_layers).to(self.device)
         # self.model = Transfomer(self.x_dim, self.hidden_dim, self.hidden_layers).to(self.device)
-        self.optim = torch.optim.RAdam(self.model.parameters(), lr=self.lr, 
+        # self.optim = torch.optim.RAdam(self.model.parameters(), lr=self.lr, 
+        #                                 weight_decay=weight_decay, betas=(0.9, 0.999))
+        self.optim = torch.optim.AdamW(self.model.parameters(), lr=self.lr,
                                         weight_decay=weight_decay, betas=(0.9, 0.999))
-        # self.optim = torch.optim.Adam(self.model.parameters(), lr=self.lr)
 
         self.use_ema = use_ema
         if self.use_ema:
@@ -88,8 +89,8 @@ class Diffusion(object):
     
     def update(self, batch):
         with torch.no_grad():
-            x = 2*(batch['states'] - self.x_min)/(self.x_max - self.x_min + 1e-6) - 1
-            # x = (batch['states']-self.x_mean)/(self.x_std+1e-6)
+            # x = 2*(batch['states'] - self.x_min)/(self.x_max - self.x_min + 1e-6) - 1
+            x = (batch['states']-self.x_mean)/(self.x_std+1e-6)
         
         loss = self.loss(x.to(self.device))
         self.optim.zero_grad()
@@ -117,23 +118,23 @@ class Diffusion(object):
 
     def get_reward(self, x_1, t=0.5, use_v=True):
         with torch.no_grad():
-            x_1 = 2*(x_1 - self.x_min)/(self.x_max - self.x_min + 1e-6) - 1
-            # x_1 = (x_1-self.x_mean)/(self.x_std+1e-6)
+            # x_1 = 2*(x_1 - self.x_min)/(self.x_max - self.x_min + 1e-6) - 1
+            x_1 = (x_1-self.x_mean)/(self.x_std+1e-6)
             x_1 = x_1.to(self.device)
         eps = torch.randn_like(x_1, requires_grad=False).to(self.device)
         t = torch.full((len(x_1), 1), t, requires_grad=False).to(self.device)
         x_t = t*x_1 + (1-t)*eps
         # using v loss
         if use_v:
-            v = x_1 - eps
-            # v_pred = (self.ema.shadow(x_t, t)-x_t)/(1-t)
-            v_pred = (self.model(x_t, t)-x_t)/(1-t)
+            v = (x_1 - x_t)/(1-t)
+            v_pred = (self.ema.shadow(x_t, t)-x_t)/(1-t)
+            # v_pred = (self.model(x_t, t)-x_t)/(1-t)
             return -torch.mean((v_pred-v)**2).item()
         # using x loss
         else:
             x_t = t*x_1 + (1-t)*eps
-            # return -torch.mean((self.ema.shadow(x_t, t)-x_1)**2).item()
-            return -torch.mean((self.model(x_t, t)-x_1)**2).item()
+            return -torch.mean((self.ema.shadow(x_t, t)-x_1)**2).item()
+            # return -torch.mean((self.model(x_t, t)-x_1)**2).item()
 
     
     def save_model(self, dir, name=None):
