@@ -7,3 +7,7 @@ python learn_reward.py
 ```
 python learn_rl.py
 ```
+## (TEMP) Training TD3 for Evaluating Reward Diffusion Model
+```
+python train_td3.py
+```
