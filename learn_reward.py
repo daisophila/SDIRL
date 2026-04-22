@@ -27,12 +27,12 @@ flags.DEFINE_integer('top_n', 3, 'Select N trajectories of top Return')
 flags.DEFINE_boolean('use_ema', True, 'Use Exponential moving average for model update')
 
 # flags.DEFINE_string('model', 'MLP', 'Network architecture for learning')
-flags.DEFINE_integer('hidden_dim', 1024, 'Hidden unit size')
-flags.DEFINE_integer('num_hidden_layers', 4, 'Number of hidden layers')
+flags.DEFINE_integer('hidden_dim', 256, 'Hidden unit size')
+flags.DEFINE_integer('num_hidden_layers', 3, 'Number of hidden layers')
 
 flags.DEFINE_integer('epochs', 1000000, 'Total number of epoch for laerning')
 flags.DEFINE_float('lr', 1e-4, 'Learning rate')
-flags.DEFINE_float('weight_decay', 1e-5, 'Weight Decay')
+flags.DEFINE_float('weight_decay', 0, 'Weight Decay') # 1e-5
 # flags.DEFINE_boolean('lr_sch', True, 'Use learning rate schedule')
 flags.DEFINE_integer('batch_size', 256, 'Batch size')
 
@@ -69,10 +69,12 @@ def main(argv):
     x_mean = dataset.states.mean(axis=0)
     x_std = dataset.states.std(axis=0)
 
-    with open(f'{exp_dir}/x_min_max.csv', 'w', newline='', encoding='utf-8-sig') as f:
+    with open(f'{exp_dir}/x_min_max_mean_std.csv', 'w', newline='', encoding='utf-8-sig') as f:
         writer = csv.writer(f)
         writer.writerow(np.array(x_min))
         writer.writerow(np.array(x_max))
+        writer.writerow(np.array(x_mean))
+        writer.writerow(np.array(x_std))
     
     diffusion = Diffusion(state_dim, x_min, x_max, x_mean, x_std, 
                           FLAGS.hidden_dim, FLAGS.num_hidden_layers,

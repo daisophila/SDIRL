@@ -132,9 +132,23 @@ class Diffusion(object):
             return -torch.mean((v_pred-v)**2).item()
         # using x loss
         else:
-            x_t = t*x_1 + (1-t)*eps
             return -torch.mean((self.ema.shadow(x_t, t)-x_1)**2).item()
             # return -torch.mean((self.model(x_t, t)-x_1)**2).item()
+    
+    def get_reward2(self, x_1, t=0.5, num_step=10):
+        with torch.no_grad():
+            x_1 = (x_1-self.x_mean)/(self.x_std+1e-6)
+            x_1 = x_1.to(self.device)
+        eps = torch.randn_like(x_1, requires_grad=False).to(self.device)
+        t = torch.full((len(x_1), 1), t, requires_grad=False).to(self.device)
+        x_t = t*x_1 + (1-t)*eps
+
+        dt = (1-t) / num_step
+        for _ in range(num_step):
+            v_pred = (self.ema.shadow(x_t, t)-x_t)/(1-t)
+            x_t = x_t + dt * v_pred
+            t += dt
+        return -torch.mean((x_t-x_1)**2).item()
 
     
     def save_model(self, dir, name=None):
